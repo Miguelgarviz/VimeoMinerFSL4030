@@ -1,8 +1,10 @@
 
-package aiss.restclient.model.videos;
+package aiss.restclient.model.channel;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Metadata {
@@ -24,7 +26,6 @@ public class Metadata {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(((this.connections == null)?"<null>":this.connections));
-        sb.append(',');
         if (sb.charAt((sb.length()- 1)) == ',') {
             sb.setCharAt((sb.length()- 1), ']');
         } else {

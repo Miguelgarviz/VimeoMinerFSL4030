@@ -25,6 +25,7 @@ public class VimeoService {
     public Channel getChannels(String token, String id, String fields) {
         String uri = String.format("https://api.vimeo.com/channels/%s?fields=%s", id, fields);
         ResponseEntity<Channel> response = restTemplate.exchange(uri, HttpMethod.GET, auth(token), Channel.class);
+        response.getBody().setUri(response.getBody().getUri().replace("/channels/",""));
         String videoFields = "uri,name,description,created_time,metadata.connections.comments.uri";
         response.getBody().setVideos(getVideos(token,videoFields,response.getBody().getMetadata().getConnections().getVideos().getUri()).getData());
         return response.getBody();
@@ -32,6 +33,12 @@ public class VimeoService {
     public Videos getVideos(String token, String fields, String videosUri) {
         String uri = String.format("https://api.vimeo.com/%s?fields=%s", videosUri, fields);
         ResponseEntity<Videos> response = restTemplate.exchange(uri, HttpMethod.GET, auth(token), Videos.class);
-        return response.getBody();
+        if (response.getBody() != null && response.getBody().getData() != null) {
+            response.getBody().getData().forEach(video -> video.setUri(video.getUri().replace("/videos/", "")));
+            return response.getBody();
+        }
+        else{
+            return new Videos();
+        }
     }
 }

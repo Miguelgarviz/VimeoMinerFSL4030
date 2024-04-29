@@ -23,9 +23,6 @@ public class Comments {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(Comments.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
-        sb.append("uri");
-        sb.append('=');
         sb.append(((this.uri == null)?"<null>":this.uri));
         sb.append(',');
         if (sb.charAt((sb.length()- 1)) == ',') {

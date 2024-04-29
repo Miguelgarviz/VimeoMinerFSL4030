@@ -1,11 +1,15 @@
 
-package aiss.restclient.model.videos;
+package aiss.restclient.model.channel;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import aiss.restclient.model.videos.Video;
+import aiss.restclient.model.videos.Videos;
+import com.fasterxml.jackson.annotation.*;
+
+import java.util.List;
+
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Video {
+public class Channel {
 
     @JsonProperty("uri")
     private String uri;
@@ -18,6 +22,15 @@ public class Video {
     @JsonProperty("metadata")
     private Metadata metadata;
 
+    private List<Video> videos;
+
+    public List<Video> getVideos() {
+        return videos;
+    }
+
+    public void setVideos(List<Video> videos) {
+        this.videos = videos;
+    }
     @JsonProperty("uri")
     public String getUri() {
         return uri;
@@ -67,26 +80,29 @@ public class Video {
     public void setMetadata(Metadata metadata) {
         this.metadata = metadata;
     }
-
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("\n   uri");
+        sb.append("uri");
         sb.append('=');
         sb.append(((this.uri == null)?"<null>":this.uri));
-        sb.append("\n   name");
+        sb.append("\n");
+        sb.append("name");
         sb.append('=');
         sb.append(((this.name == null)?"<null>":this.name));
-        sb.append("\n   description");
+        sb.append("\n");
+        sb.append("description");
         sb.append('=');
         sb.append(((this.description == null)?"<null>":this.description));
-        sb.append("\n   createdTime");
+        sb.append("\n");
+        sb.append("createdTime");
         sb.append('=');
         sb.append(((this.createdTime == null)?"<null>":this.createdTime));
-        sb.append("\n   comments");
+        sb.append('\n');
+        sb.append("Videos");
         sb.append('=');
-        sb.append(((this.metadata == null)?"<null>":this.metadata));
-        sb.append(',');
+        sb.append(((this.videos == null)?"<null>":this.videos));
+        sb.append("\n,");
         if (sb.charAt((sb.length()- 1)) == ',') {
             sb.setCharAt((sb.length()- 1), ']');
         } else {

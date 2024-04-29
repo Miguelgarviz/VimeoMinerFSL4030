@@ -1,32 +1,30 @@
 
-package aiss.restclient.model.videos;
-
-import java.util.List;
+package aiss.restclient.model.channel;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Videos {
+public class Connections {
 
-    @JsonProperty("data")
-    private List<Video> data;
+    @JsonProperty("videos")
+    private VideosUri videos;
 
-    @JsonProperty("data")
-    public List<Video> getData() {
-        return data;
+    @JsonProperty("videos")
+    public VideosUri getVideos() {
+        return videos;
     }
 
-    @JsonProperty("data")
-    public void setData(List<Video> data) {
-        this.data = data;
+    @JsonProperty("videos")
+    public void setVideos(VideosUri videos) {
+        this.videos = videos;
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(((this.data == null)?"<null>":this.data));
-        sb.append(',');
+        sb.append(((this.videos == null)?"<null>":this.videos));
         if (sb.charAt((sb.length()- 1)) == ',') {
             sb.setCharAt((sb.length()- 1), ']');
         } else {
