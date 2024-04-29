@@ -1,6 +1,7 @@
 package aiss.restclient.service;
 
 import aiss.restclient.model.channel.Channel;
+import aiss.restclient.model.comments.Comment;
 import aiss.restclient.model.videos.Videos;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
@@ -9,6 +10,8 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
+
+import java.util.ArrayList;
 
 
 @Service
@@ -28,6 +31,9 @@ public class VimeoService {
         response.getBody().setUri(response.getBody().getUri().replace("/channels/",""));
         String videoFields = "uri,name,description,created_time,metadata.connections.comments.uri";
         response.getBody().setVideos(getVideos(token,videoFields,response.getBody().getMetadata().getConnections().getVideos().getUri()).getData());
+        if(response.getBody().getVideos() != null){
+            response.getBody().setVideos(new ArrayList<>());
+        }
         return response.getBody();
     }
     public Videos getVideos(String token, String fields, String videosUri) {
@@ -40,5 +46,9 @@ public class VimeoService {
         else{
             return new Videos();
         }
+    }
+
+    public Comment getComments(String token, String commentUri){
+
     }
 }
