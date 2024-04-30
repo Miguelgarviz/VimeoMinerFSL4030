@@ -1,30 +1,30 @@
 
-package aiss.restclient.model.videos;
+package aiss.restclient.model.users;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Connections {
+public class Pictures {
 
-    @JsonProperty("comments")
-    private Comments comments;
+    @JsonProperty("base_link")
+    private String baseLink;
 
-    @JsonProperty("comments")
-    public Comments getComments() {
-        return comments;
+    @JsonProperty("base_link")
+    public String getBaseLink() {
+        return baseLink;
     }
 
-    @JsonProperty("comments")
-    public void setComments(Comments comments) {
-        this.comments = comments;
+    @JsonProperty("base_link")
+    public void setBaseLink(String baseLink) {
+        this.baseLink = baseLink;
     }
+
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(((this.comments == null)?"<null>":this.comments));
-        sb.append(',');
+        sb.append(((this.baseLink == null)?"<null>":this.baseLink));
         if (sb.charAt((sb.length()- 1)) == ',') {
             sb.setCharAt((sb.length()- 1), ']');
         } else {

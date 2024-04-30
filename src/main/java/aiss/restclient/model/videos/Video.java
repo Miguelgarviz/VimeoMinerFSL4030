@@ -1,8 +1,12 @@
 
 package aiss.restclient.model.videos;
 
+import aiss.restclient.model.caption.Caption;
+import aiss.restclient.model.comments.Comment;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
+import java.util.List;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Video {
@@ -15,9 +19,27 @@ public class Video {
     private Object description;
     @JsonProperty("created_time")
     private String createdTime;
-    @JsonProperty("metadata")
-    private Metadata metadata;
 
+    private List<Caption> captions;
+
+    private List<Comment> comments;
+
+    public List<Caption> getCaptions() {
+        return captions;
+    }
+
+    public void setCaptions(List<Caption> captions) {
+        this.captions = captions;
+    }
+
+
+
+    public List<Comment> getComments() {
+        return comments;
+    }
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
+    }
     @JsonProperty("uri")
     public String getUri() {
         return uri;
@@ -58,16 +80,6 @@ public class Video {
         this.createdTime = createdTime;
     }
 
-    @JsonProperty("metadata")
-    public Metadata getMetadata() {
-        return metadata;
-    }
-
-    @JsonProperty("metadata")
-    public void setMetadata(Metadata metadata) {
-        this.metadata = metadata;
-    }
-
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -83,10 +95,13 @@ public class Video {
         sb.append("\n   createdTime");
         sb.append('=');
         sb.append(((this.createdTime == null)?"<null>":this.createdTime));
+        sb.append("\n   captions");
+        sb.append('=');
+        sb.append(((this.captions == null)?"<null>":this.captions));
         sb.append("\n   comments");
         sb.append('=');
-        sb.append(((this.metadata == null)?"<null>":this.metadata));
-        sb.append(',');
+        sb.append(((this.comments == null)?"<null>":this.comments));
+        sb.append("\n,");
         if (sb.charAt((sb.length()- 1)) == ',') {
             sb.setCharAt((sb.length()- 1), ']');
         } else {
