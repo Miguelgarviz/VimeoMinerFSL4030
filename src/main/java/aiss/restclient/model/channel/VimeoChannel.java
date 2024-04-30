@@ -2,25 +2,22 @@
 package aiss.restclient.model.channel;
 
 import aiss.restclient.model.videos.Video;
-import aiss.restclient.model.videos.Videos;
 import com.fasterxml.jackson.annotation.*;
 
 import java.util.List;
 
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Channel {
+public class VimeoChannel {
 
     @JsonProperty("uri")
     private String uri;
     @JsonProperty("name")
     private String name;
     @JsonProperty("description")
-    private Object description;
+    private String description;
     @JsonProperty("created_time")
     private String createdTime;
-    @JsonProperty("metadata")
-    private Metadata metadata;
 
     private List<Video> videos;
 
@@ -52,12 +49,12 @@ public class Channel {
     }
 
     @JsonProperty("description")
-    public Object getDescription() {
+    public String getDescription() {
         return description;
     }
 
     @JsonProperty("description")
-    public void setDescription(Object description) {
+    public void setDescription(String description) {
         this.description = description;
     }
 
@@ -71,15 +68,6 @@ public class Channel {
         this.createdTime = createdTime;
     }
 
-    @JsonProperty("metadata")
-    public Metadata getMetadata() {
-        return metadata;
-    }
-
-    @JsonProperty("metadata")
-    public void setMetadata(Metadata metadata) {
-        this.metadata = metadata;
-    }
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
