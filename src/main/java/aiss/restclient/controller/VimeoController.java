@@ -7,10 +7,12 @@ import aiss.restclient.model.channel.ChannelData;
 import aiss.restclient.model.channel.VimeoChannel;
 import aiss.restclient.service.VimeoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
@@ -27,6 +29,7 @@ public class VimeoController {
     @Autowired
     RestTemplate restTemplate;
 
+    @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/channels")
     public List<Channel> post() {
         String token = "1a91f47a52a63df97b35f0694c7bf4cb";
@@ -80,6 +83,7 @@ public class VimeoController {
         return res;
     }
 
+    @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/channels/{id}")
     public Channel post(@PathVariable String id) {
         Channel VideoChannel = new Channel();
