@@ -85,7 +85,7 @@ public class VimeoController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/channels/{id}")
-    public Channel post(@PathVariable String id) {
+    public void post(@PathVariable String id) {
         Channel VideoChannel = new Channel();
         String token = "1a91f47a52a63df97b35f0694c7bf4cb";
         VimeoChannel vimeoChannel = vimeoService.getChannels(token, id);
@@ -129,8 +129,7 @@ public class VimeoController {
                 }
                 newChannel.getVideos().add(vid);
             });
-            VideoChannel = restTemplate.postForObject("http://localhost:8080/videominer/channels", newChannel, Channel.class);
+            restTemplate.postForObject("http://localhost:8080/videominer/channels", newChannel, Channel.class);
         }
-        return VideoChannel;
     }
 }
